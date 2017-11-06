@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import classnames from 'cmn/lib/classnames'
 
 import './index.css'
 import './fonts.css'
@@ -10,16 +11,17 @@ import IMAGE_INSTALL from './s3-Install.png'
 
 class ModalWelcome extends PureComponent {
     state = {
-
+        didClick: false
     }
     render() {
+        const { didClick } = this.state;
         return (
-            <div id="csfxWelcome" class="">
+            <div id="csfxWelcome" className={classnames(didClick && 'full')}>
                 <div class="heading xCenter">Welcome</div>
                 <br />
                 <div class="h2 xCenter">to Foxified Extension Stores.</div>
                 <br />
-                <div id="frontText">
+                <div id="frontText" className={classnames(didClick && 'ftDown')}>
                     {/*
                     <a class="frontContext fc1">Install Chrome,</a>
                     <a class="frontContext fc2">Opera,</a>
@@ -31,8 +33,8 @@ class ModalWelcome extends PureComponent {
                     <a class="frontContext fc4">right in Firefox.</a>
                 </div>
                 <div id="devText">Since you're using Firefox Developer Edition, you'll need to make sure that <i>xpinstall.signatures.required</i> is set to <i><b>false</b></i> in <b>about:config</b> before you begin.</div>
-                <div id="nightlyText">Since you're using Firefox Nightly, you'll need to make sure that <i>xpinstall.signatures.required </i> is set to <i><b>false</b></i> in <b>about:config</b> before you begin.</div>
-                <img id="nxt" src={IMAGE_NEXT} />
+                <div id="nightlyText" className={classnames(didClick && 'hidden')}>Since you're using Firefox Nightly, you'll need to make sure that <i>xpinstall.signatures.required </i> is set to <i><b>false</b></i> in <b>about:config</b> before you begin.</div>
+                <img id="nxt" src={IMAGE_NEXT} onClick={this.click}/>
                 <div id="instructionImg">
                     <img id="inst0" class="instruction" src={IMAGE_FIND} />
                     <img id="inst1" class="instruction" src={IMAGE_ADD} />
@@ -52,6 +54,8 @@ class ModalWelcome extends PureComponent {
             </div>
         )
     }
+
+    click = () => this.setState(() => ({ didClick:true }))
 }
 
 export default ModalWelcome

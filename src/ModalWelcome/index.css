@@ -195,3 +195,7 @@ Alternate code below
 /*#edge::before{
     content: url("./edge.png");
 }*/
+
+.hidden {
+    opacity: 0
+}
